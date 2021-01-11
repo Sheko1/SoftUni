@@ -1,0 +1,5 @@
+deposit = float(input())
+time = int(input())
+interest = float(input())
+amount = deposit + time * ((deposit * interest / 100) / 12)
+print(amount)
