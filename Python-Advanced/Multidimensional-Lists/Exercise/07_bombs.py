@@ -24,14 +24,16 @@ def is_valid(matrix_1, r, c):
 def explosion(matrix_1, row_1, col_1):
     moves = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
     bomb = matrix_1[row_1][col_1]
-    matrix_1[row_1][col_1] = 0
 
-    for i in range(len(moves)):
-        curr_row = row_1 + moves[i][0]
-        curr_coll = col_1 + moves[i][1]
-        if is_valid(matrix_1, curr_row, curr_coll):
-            if matrix_1[curr_row][curr_coll] > 0:
-                matrix_1[curr_row][curr_coll] -= bomb
+    if bomb > 0:
+        matrix_1[row_1][col_1] = 0
+
+        for i in range(len(moves)):
+            curr_row = row_1 + moves[i][0]
+            curr_coll = col_1 + moves[i][1]
+            if is_valid(matrix_1, curr_row, curr_coll):
+                if matrix_1[curr_row][curr_coll] > 0:
+                    matrix_1[curr_row][curr_coll] -= bomb
 
     return matrix_1
 
