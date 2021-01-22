@@ -1,5 +1,5 @@
 data = input().split("|")
 data.reverse()
-
-result = [x.strip() for i in range(len(data)) for x in data[i].split()]
+ 
+result = [value.strip() for i in range(len(data)) for value in data[i].split()]
 print(*result)
