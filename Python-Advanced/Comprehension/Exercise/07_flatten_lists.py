@@ -1,5 +1,4 @@
 data = input().split("|")
-data.reverse()
- 
-result = [value.strip() for i in range(len(data)) for value in data[i].split()]
+
+result = [value for str_nums in reversed(data) for value in str_nums.split()]
 print(*result)
