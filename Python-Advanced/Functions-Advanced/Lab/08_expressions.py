@@ -1,9 +1,11 @@
-def expression(nums):
-    if not nums:
-        print(nums)
+def expressions(nums_list, current_sum=0, expression=""):
+    if not nums_list:
+        print(f"{expression}={current_sum}")
+        return
 
-    expression(nums[1:])
-    expression(nums[1:])
+    expressions(nums_list[1:], current_sum+nums_list[0], f"{expression}+{nums_list[0]}")
+    expressions(nums_list[1:], current_sum-nums_list[0], f"{expression}-{nums_list[0]}")
 
 
-expression([int(i) for i in input().split(", ")])
+nums = [int(num) for num in input().split(", ")]
+expressions(nums)
