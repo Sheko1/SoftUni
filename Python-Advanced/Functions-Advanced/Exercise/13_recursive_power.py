@@ -1,5 +1,5 @@
-def recursive_power(number, power, n=0, result=1):
-    if n == power:
-        return result
+def recursive_power(number, power):
+    if power == 1:
+        return number
 
-    return recursive_power(number, power, n+1, result*number)
+    return number * recursive_power(number, power-1)
