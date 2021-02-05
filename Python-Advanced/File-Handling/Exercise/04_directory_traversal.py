@@ -4,6 +4,7 @@ desktop = os.path.normpath(os.path.expanduser("~/Desktop"))
 path = input()
 
 files = os.listdir(path)
+files = [el for el in files if os.path.isfile(el)]
 result = {}
 
 for file in files:
