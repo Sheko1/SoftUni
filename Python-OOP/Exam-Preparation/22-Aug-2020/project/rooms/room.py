@@ -1,6 +1,3 @@
-from project.appliances.appliance import Appliance
-
-
 class Room:
     def __init__(self, family_name: str, budget: float, members_count: int):
         self.family_name = family_name
@@ -24,10 +21,6 @@ class Room:
         result = 0
         for list_obj in args:
             for obj in list_obj:
-                if isinstance(obj, Appliance):
-                    result += obj.get_monthly_expense()
-
-                else:
-                    result += obj.month_cost
+                result += obj.get_monthly_expense()
 
         return result

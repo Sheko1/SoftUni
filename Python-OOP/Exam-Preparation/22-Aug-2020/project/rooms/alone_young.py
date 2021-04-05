@@ -1,5 +1,5 @@
 from project.appliances.tv import TV
-from .room import Room
+from project.rooms.room import Room
 
 
 class AloneYoung(Room):

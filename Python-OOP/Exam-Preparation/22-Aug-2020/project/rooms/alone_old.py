@@ -1,4 +1,4 @@
-from .room import Room
+from project.rooms.room import Room
 
 
 class AloneOld(Room):
