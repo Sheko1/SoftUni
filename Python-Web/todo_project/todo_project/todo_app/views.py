@@ -16,7 +16,7 @@ def todo_add(req):
     return redirect('/')
 
 
-def todo_delete(req, pk):
+def todo_change_status_or_delete(req, pk):
     todo = Todo.objects.get(pk=pk)
     if "sheko" in req.POST.keys():
         todo.is_done = True
