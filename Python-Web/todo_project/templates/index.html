@@ -2,6 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Todo App</title>
 </head>
 <style>
@@ -55,6 +57,12 @@
 </style>
 <body>
     <h1>My Todo List</h1>
+    <form method="post" action="/todo_add">
+        {% csrf_token %}
+        <label>Title:<input name="title" required autocomplete="off"></label>
+        <label>Description:<input aria-label="description" name="description" required autocomplete="off"></label>
+        <button class="btn btn-outline-primary">Add</button>
+    </form>
     {% if todos %}
             <div class="container">
                 {% for todo in todos %}
@@ -68,7 +76,19 @@
                         {% else %}
                             <div class="open">NOT DONE</div>
                         {% endif %}
+
+                        <form method="post" action="/todo_delete/{{ todo.id }}">
+                            {% csrf_token %}
+                            {% if not todo.is_done %}
+                            <button name="sheko" class="btn-primary">Finish</button>
+                            {% else %}
+                                <button name="cheko" class="btn-primary">Unfinish</button>
+                            {% endif %}
+                            <button name="beko" class="btn-danger">Delete</button>
+                        </form>
+
                     </div>
+
 
                 {% endfor %}
 
