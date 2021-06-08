@@ -1,0 +1,28 @@
+.merfin {
+    text-align: center;
+    height: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+body {
+    font-family: Roboto, sans-serif;
+    background-color: #323232;
+    color: #ffffff;
+}
+
+.add_field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+
+.logout_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
