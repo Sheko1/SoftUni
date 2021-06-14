@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'todo_app/index.css' %}">
+
+</head>
+<body>
+<h1>My Todo List</h1>
+{% if todos %}
+    <div class="container">
+        {% for todo in todos %}
+            <div class="todo">
+                <p>{{ todo.title }}</p>
+                <div class="description">{{ todo.description }}</div>
+                {% if todo.is_done %}
+                    <div class="done">DONE</div>
+                {% else %}
+                    <div class="open">NOT DONE</div>
+                {% endif %}
+                <a class="btn btn-primary" href='update/{{ todo.id }}'>Update</a>
+                <a class="btn btn-primary" href='delete/{{ todo.id }}'>Delete</a>
+            </div>
+        {% endfor %}
+        <a class="btn btn-primary" href="{% url 'create_todo' %}">Create</a>
+    </div>
+{% else %}
+    <h2>No TODOs</h2>
+    <h2>Go to <a href={% url "create_todo" %}>/createTodo</a> to create a new TODO</h2>
+{% endif %}
+</body>
+</html>
