@@ -12,12 +12,26 @@ def index(req):
 def create(req):
     if req.method == 'GET':
         form = PythonCreateForm()
-        return render(req, 'create.html', {'form': form, 'page_name': 'create'})
+
+        context = {
+            'form': form,
+            'page_name': 'create',
+        }
+
+        return render(req, 'create.html', context)
+
     else:
         data = req.POST
-        form = PythonCreateForm(data)
-        print(form)
+        form = PythonCreateForm(data, req.FILES)
+
         if form.is_valid():
             python = form.save()
             python.save()
             return redirect('index')
+
+        context = {
+            'form': form,
+            'page_name': 'create',
+        }
+
+        return render(req, 'create.html', context)
