@@ -23,4 +23,17 @@
             {% endif %}
         </ul>
     </div>
+
+    <ul class="navbar-nav">
+        {% if request.user.is_authenticated %}
+            <span class="navbar-text">Hello, {{ request.user }}</span>
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+        {% endif %}
+    </ul>
+
 </nav>

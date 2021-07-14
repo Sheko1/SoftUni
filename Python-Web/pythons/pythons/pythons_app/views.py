@@ -1,14 +1,19 @@
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from .forms import PythonCreateForm
 from .models import Python
 
 
 # Create your views here.
+from ..core.decorators import user_group_required
+
+
 def index(req):
     pythons = Python.objects.all()
     return render(req, 'index.html', {'pythons': pythons, 'page_name': 'home'})
 
 
+@user_group_required
 def create(req):
     if req.method == 'GET':
         form = PythonCreateForm()
@@ -35,3 +40,14 @@ def create(req):
         }
 
         return render(req, 'create.html', context)
+
+
+def login_view(req):
+    user = authenticate(username='roko', password='asd123')
+    login(req, user)
+    return redirect('index')
+
+
+def logout_view(req):
+    logout(req)
+    return redirect('index')
