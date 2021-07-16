@@ -1,0 +1,29 @@
+{% load profile_done_notification %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pythons Wiki</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+{% include 'common/header.html' with page_name=page_name %}
+
+{% profile_done_notification %}
+
+{% if profile_done_notification %}
+    ramadan
+{% endif %}
+
+
+{% block content %}
+{% endblock %}
+
+
+
+{% include 'common/footer.html' %}
+
+</body>
+</html>

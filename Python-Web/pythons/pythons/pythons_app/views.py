@@ -40,14 +40,3 @@ def create(req):
         }
 
         return render(req, 'create.html', context)
-
-
-def login_view(req):
-    user = authenticate(username='roko', password='asd123')
-    login(req, user)
-    return redirect('index')
-
-
-def logout_view(req):
-    logout(req)
-    return redirect('index')

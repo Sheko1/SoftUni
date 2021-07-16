@@ -1,0 +1,16 @@
+{% extends 'common/base.html' %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+    <h1 class="text-center">Register</h1>
+    <div class="row d-flex justify-content-center">
+        <form class="form" method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            {% endbuttons %}
+        </form>
+    </div>
+{% endblock %}

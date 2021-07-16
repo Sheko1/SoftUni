@@ -26,12 +26,16 @@
 
     <ul class="navbar-nav">
         {% if request.user.is_authenticated %}
-            <span class="navbar-text">Hello, {{ request.user }}</span>
+            <span class="navbar-text">Hello, <a href="{% url 'profile' %}">{{ request.user }}</a></span>
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
 
         {% else %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
             </li>
         {% endif %}
     </ul>

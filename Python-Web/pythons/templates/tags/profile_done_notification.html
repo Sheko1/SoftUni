@@ -1,0 +1,3 @@
+{% if not is_complete %}
+    <h1 class="text-center">Your profile is not complete, complete it <a href="{% url 'edit profile' %}">here!</a></h1>
+{% endif %}
