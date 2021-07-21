@@ -1,6 +1,6 @@
 from django.urls import path
 
-from petstagram.pets.views import pet_all, pet_details, pet_like, create_pet, edit_pet, delete_pet
+from petstagram.pets.views import pet_all, pet_details, pet_like, create_pet, edit_pet, delete_pet, comment_pet
 
 urlpatterns = [
     path('', pet_all, name='pet_all'),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('create/', create_pet, name='create_pet'),
     path('edit/<int:pk>', edit_pet, name='edit_pet'),
     path('delete/<int:pk>', delete_pet, name='delete_pet'),
+    path('comment/<int:pk>', comment_pet, name='comment_pet'),
 ]
