@@ -1,42 +1,23 @@
-from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView
+
 from .forms import PythonCreateForm
 from .models import Python
 
 
 # Create your views here.
-from ..core.decorators import user_group_required
+from ..core.mixins import UserGroupRequiredMixin
 
 
-def index(req):
-    pythons = Python.objects.all()
-    return render(req, 'index.html', {'pythons': pythons, 'page_name': 'home'})
+class IndexView(ListView):
+    template_name = 'index.html'
+    model = Python
+    context_object_name = 'pythons'
+    extra_context = {'page_name': 'home'}
 
 
-@user_group_required
-def create(req):
-    if req.method == 'GET':
-        form = PythonCreateForm()
-
-        context = {
-            'form': form,
-            'page_name': 'create',
-        }
-
-        return render(req, 'create.html', context)
-
-    else:
-        data = req.POST
-        form = PythonCreateForm(data, req.FILES)
-
-        if form.is_valid():
-            python = form.save()
-            python.save()
-            return redirect('index')
-
-        context = {
-            'form': form,
-            'page_name': 'create',
-        }
-
-        return render(req, 'create.html', context)
+class CreatePythonView(UserGroupRequiredMixin, CreateView):
+    template_name = 'create.html'
+    form_class = PythonCreateForm
+    extra_context = {'page_name': 'create'}
+    success_url = reverse_lazy('index')

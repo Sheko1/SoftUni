@@ -1,9 +1,10 @@
 from django import forms
 from django.contrib.auth import authenticate
+from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ValidationError
 
 
-class LoginForm(forms.Form):
+class LoginForm(AuthenticationForm):
     user = None
 
     username = forms.CharField(
@@ -15,6 +16,7 @@ class LoginForm(forms.Form):
     )
 
     def clean(self):
+        super().clean()
         self.user = authenticate(username=self.cleaned_data['username'], password=self.cleaned_data['password'])
 
         if not self.user:
