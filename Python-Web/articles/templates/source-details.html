@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="source-details-section">
+        <div class="source-details-container container">
+            <h2>Source: {{ source }}</h2>
+            <ol>
+                {% for article in page_obj.object_list %}
+                    <div class="article-card">
+                        <h3 class="article-title small">{{ article.title }}</h3>
+                        <img class="article-image large" src="{{ article.image_url }}">
+                        <p>{{ article.description }}</p>
+                        <span class="source">{{ article.source }}</span>
+                    </div>
+                {% endfor %}
+
+            </ol>
+            <div class="pagination">
+                <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">prev</a>
+                {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
